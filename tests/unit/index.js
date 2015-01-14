@@ -1,3 +1,8 @@
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+
 /*global describe,it */
 'use strict';
 
@@ -28,37 +33,37 @@ var createWebpackConfigWithLoader = function (loaderOpt) {
 var createWebpackTest = function (done) {
     return function(err, stats) {
 
-        expect(err).to.be.null;
-        expect(stats.hasErrors()).to.be.false;
+        expect(err).to.be.null();
+        expect(stats.hasErrors()).to.be.false();
 
         var statsJson = stats.toJson();
         expect(statsJson.errors).to.have.length(0);
 
-        var originalSource = fs.readFileSync(cwd + '/index.js', {encoding: 'utf8'})
-        expect(originalSource).to.contain('assert');
+        var originalSource = fs.readFileSync(cwd + '/index.js', {encoding: 'utf8'});
+        expect(originalSource).to.contain('console.log');
         expect(originalSource).to.contain('debug');
 
         var strippedSource = statsJson.modules[0].source;
-        expect(strippedSource).to.not.contain('assert');
+        expect(strippedSource).to.not.contain('console.log');
         expect(strippedSource).to.not.contain('debug');
 
         done(err);
     };
-}
+};
 
 
 describe('integration', function () {
     describe('webpack', function () {
         it('should work with loader query params', function (done) {
             webpack(
-                createWebpackConfigWithLoader(loaderLibPath + '?strip[]=assert,strip[]=debug'),
+                createWebpackConfigWithLoader(loaderLibPath + '?strip[]=console.log,strip[]=debug'),
                 createWebpackTest(done)
             );
         });
 
-        it('should work with loader usage as library', function (done) {
+        it('should work with loader used as library', function (done) {
             webpack(
-                createWebpackConfigWithLoader(loaderLib.loader('assert', 'debug')),
+                createWebpackConfigWithLoader(loaderLib.loader('console.log', 'debug')),
                 createWebpackTest(done)
             );
         });

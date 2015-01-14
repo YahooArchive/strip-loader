@@ -1,2 +1,4 @@
 node_modules
 tests/fixtures/app/bundle.js
+/artifacts/
+npm-debug.log
