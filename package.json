@@ -1,0 +1,22 @@
+{
+  "name": "webpack-strip",
+  "version": "0.0.1",
+  "description": "Webpack loader to strip arbitrary functions out of your code.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha tests/unit --recursive --reporter spec"
+  },
+  "keywords": [
+    "webpack",
+    "strip"
+  ],
+  "author": "Rajiv Tirumalareddy <rajivtirum@yahoo-inc.com>",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0",
+    "webpack": "^1.4.15"
+  },
+  "dependencies": {
+    "loader-utils": "^0.2.6"
+  }
+}
