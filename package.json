@@ -12,6 +12,10 @@
     "webpack",
     "strip"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yahoo/webpack-strip"
+  },
   "author": "Rajiv Tirumalareddy <rajivtirum@yahoo-inc.com>",
   "devDependencies": {
     "chai": "^1.10.0",
