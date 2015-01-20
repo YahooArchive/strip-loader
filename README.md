@@ -3,7 +3,11 @@ Webpack Strip
 
 Simple [Webpack](http://webpack.github.io/) loader to strip custom functions from your code. This can be useful if you want to use debug statements while developing your app but don't want this info exposed in your production code.
 
-##Usage:
+## Install
+
+`npm install --save-dev webpack-strip`
+
+## Usage
 
 In your client js source files:
 
