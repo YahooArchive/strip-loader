@@ -61,7 +61,7 @@ In your webpack config:
 In your webpack config:
 
 ```javascript
-var WebpackStrip = require('strip-loader')
+var WebpackStrip = require('strip-loader');
 
 var webpackConfig = {
     module: {
