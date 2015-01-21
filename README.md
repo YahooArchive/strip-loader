@@ -1,17 +1,17 @@
-# Webpack Strip
+# Strip Loader
 
-[![npm version](https://badge.fury.io/js/webpack-strip.svg)](http://badge.fury.io/js/webpack-strip)
-[![Build Status](https://travis-ci.org/yahoo/webpack-strip.svg?branch=master)](https://travis-ci.org/yahoo/webpack-strip)
-[![Dependency Status](https://david-dm.org/yahoo/webpack-strip.svg)](https://david-dm.org/yahoo/webpack-strip)
-[![devDependency Status](https://david-dm.org/yahoo/webpack-strip/dev-status.svg)](https://david-dm.org/yahoo/webpack-strip#info=devDependencies)
-[![Coverage Status](https://coveralls.io/repos/yahoo/webpack-strip/badge.png?branch=master)](https://coveralls.io/r/yahoo/webpack-strip?branch=master)
+[![npm version](https://badge.fury.io/js/strip-loader.svg)](http://badge.fury.io/js/strip-loader)
+[![Build Status](https://travis-ci.org/yahoo/strip-loader.svg?branch=master)](https://travis-ci.org/yahoo/strip-loader)
+[![Dependency Status](https://david-dm.org/yahoo/strip-loader.svg)](https://david-dm.org/yahoo/strip-loader)
+[![devDependency Status](https://david-dm.org/yahoo/strip-loader/dev-status.svg)](https://david-dm.org/yahoo/strip-loader#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/yahoo/strip-loader/badge.png?branch=master)](https://coveralls.io/r/yahoo/strip-loader?branch=master)
 
 Simple [Webpack](http://webpack.github.io/) loader to strip custom functions from your code. This can be useful if you want to use debug statements while developing your app but don't want this info exposed in your production code.
 
 
 ## Install
 
-`npm install --save-dev webpack-strip`
+`npm install --save-dev strip-loader`
 
 ## Usage
 
@@ -38,7 +38,7 @@ In your webpack config:
 {
     module: {
         loaders: [
-            { test: /\.js$/, loader: "webpack-strip?strip[]=debug" }
+            { test: /\.js$/, loader: "strip-loader?strip[]=debug" }
         ]
     }
 };
@@ -51,7 +51,7 @@ In your webpack config:
 {
     module: {
         loaders: [
-            { test: /\.js$/, loader: "webpack-strip?strip[]=debug,strip[]=console.log" }
+            { test: /\.js$/, loader: "strip-loader?strip[]=debug,strip[]=console.log" }
         ]
     }
 };
@@ -61,8 +61,9 @@ In your webpack config:
 In your webpack config:
 
 ```javascript
-var WebpackStrip = require('webpack-strip')
-{
+var WebpackStrip = require('strip-loader');
+
+var webpackConfig = {
     module: {
         loaders: [
             { test: /\.js$/, loader: WebpackStrip.loader('debug', 'console.log') }
@@ -71,9 +72,23 @@ var WebpackStrip = require('webpack-strip')
 };
 ```
 
+### Remove stripped functions from bundle
+
+So far we've removed the calls to the debug function, but webpack will still include the `debug` module in the final bundle. Use the [`IgnorePlugin`](http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin)
+
+```javascript
+{
+    plugins: [
+        new webpack.IgnorePlugin(/debug/)
+    ]
+}
+```
+
+
+
 ## License
 
 This software is free to use under the Yahoo! Inc. BSD license.
 See the [LICENSE file][] for license text and copyright information.
 
-[LICENSE file]: https://github.com/yahoo/webpack-strip/blob/master/LICENSE.md
+[LICENSE file]: https://github.com/yahoo/strip-loader/blob/master/LICENSE.md
