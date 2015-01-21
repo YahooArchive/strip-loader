@@ -1,5 +1,5 @@
 {
-  "name": "webpack-strip",
+  "name": "strip-loader",
   "version": "0.1.0",
   "description": "Webpack loader to strip arbitrary functions out of your production code.",
   "main": "lib/index.js",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:yahoo/webpack-strip"
+    "url": "git@github.com:yahoo/strip-loader"
   },
   "author": "Rajiv Tirumalareddy <rajivtirum@yahoo-inc.com>",
   "devDependencies": {
@@ -31,7 +31,7 @@
   "licenses": [
     {
       "type": "BSD",
-      "url": "https://github.com/yahoo/webpack-strip/blob/master/LICENSE.md"
+      "url": "https://github.com/yahoo/strip-loader/blob/master/LICENSE.md"
     }
   ],
   "jshintConfig": {
