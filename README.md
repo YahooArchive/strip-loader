@@ -1,7 +1,13 @@
-Webpack Strip
-=============
+# Webpack Strip
+
+[![npm version](https://badge.fury.io/js/webpack-strip.svg)](http://badge.fury.io/js/webpack-strip)
+[![Build Status](https://travis-ci.org/yahoo/webpack-strip.svg?branch=master)](https://travis-ci.org/yahoo/webpack-strip)
+[![Dependency Status](https://david-dm.org/yahoo/webpack-strip.svg)](https://david-dm.org/yahoo/webpack-strip)
+[![devDependency Status](https://david-dm.org/yahoo/webpack-strip/dev-status.svg)](https://david-dm.org/yahoo/webpack-strip#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/yahoo/webpack-strip/badge.png?branch=master)](https://coveralls.io/r/yahoo/webpack-strip?branch=master)
 
 Simple [Webpack](http://webpack.github.io/) loader to strip custom functions from your code. This can be useful if you want to use debug statements while developing your app but don't want this info exposed in your production code.
+
 
 ## Install
 
@@ -64,3 +70,10 @@ var WebpackStrip = require('webpack-strip')
     }
 };
 ```
+
+## License
+
+This software is free to use under the Yahoo! Inc. BSD license.
+See the [LICENSE file][] for license text and copyright information.
+
+[LICENSE file]: https://github.com/yahoo/webpack-strip/blob/master/LICENSE.md
