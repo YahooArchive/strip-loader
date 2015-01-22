@@ -19,6 +19,7 @@ In your client js source files:
 
 ```javascript
 
+// The following two lines of code will be stripped with our webpack loader
 var debug = require('debug')('MyFile');
 
 var makeFoo = function () {
@@ -30,6 +31,25 @@ var makeFoo = function () {
 };
 
 ```
+
+In your client js output files:
+
+```javascript
+
+// The following two lines of code will be stripped with our webpack loader
+
+
+var makeFoo = function () {
+    // The following two lines of code will be stripped with our webpack loader
+
+
+    // This code would remain
+    return 'Foo';
+};
+
+```
+
+
 
 ### Single function
 In your webpack config:
@@ -71,20 +91,6 @@ var webpackConfig = {
     }
 };
 ```
-
-### Remove stripped functions from bundle
-
-So far we've removed the calls to the debug function, but webpack will still include the `debug` module in the final bundle. Use the [`IgnorePlugin`](http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin)
-
-```javascript
-{
-    plugins: [
-        new webpack.IgnorePlugin(/debug/)
-    ]
-}
-```
-
-
 
 ## License
 
