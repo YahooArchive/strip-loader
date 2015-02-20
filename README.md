@@ -72,16 +72,20 @@ var webpackConfig = {
 };
 ```
 
-### Remove stripped functions from bundle
+### Replace unused module
 
-So far we've removed the calls to the debug function, but webpack will still include the `debug` module in the final bundle. Use the [`IgnorePlugin`](http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin)
+So far we've removed the calls to the debug function, but your app still requires the `debug` module in the final bundle. Use the [`NormalModuleReplacementPlugin`](http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin) to replace it with an empty function:
 
 ```javascript
+// webpack config
 {
     plugins: [
-        new webpack.IgnorePlugin(/debug/)
+        new webpack.NormalModuleReplacementPlugin(/debug/, process.cwd() + '/emptyDebug.js'),
     ]
 }
+
+// emptyDebug.js
+module.exports = function() { return new Function(); };
 ```
 
 
