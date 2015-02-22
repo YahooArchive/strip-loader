@@ -65,6 +65,19 @@ var createWebpackTest = function (done) {
 
 describe('integration', function () {
     describe('webpack', function () {
+        it('should throw error without loader query params', function (done) {
+            webpack(
+                createWebpackConfigWithLoader(loaderLibPath),
+                function (err, stats) {
+                    expect(stats.hasErrors()).to.be.true();
+                    var statsJson = stats.toJson();
+                    expect(statsJson.errors).to.have.length(1);
+                    expect(statsJson.errors[0]).to.contain('strip-loader: no functions provided for stripping');
+                    done(err);
+                }
+            );
+        });
+
         it('should work with loader query params', function (done) {
             webpack(
                 createWebpackConfigWithLoader(loaderLibPath + '?strip[]=assert,strip[]=debug'),
