@@ -15,16 +15,29 @@ Simple [Webpack](http://webpack.github.io/) loader to strip custom functions fro
 
 ## Usage
 
-In your client js source files:
+Before
 
 ```javascript
 
+// the following variable will be stubbed to a noop function
 var debug = require('debug')('MyFile');
 
 var makeFoo = function () {
-    // The following two lines of code will be stripped with our webpack loader
-    debug('makeFoo called');
-    debug('makeFoo args', arguments);
+    // The following line of code will be stripped with our webpack loader
+    debug('making Foo');
+    // This code would remain
+    return 'Foo';
+};
+
+```
+
+After
+
+```javascript
+
+var debug = function(){};
+
+var makeFoo = function () {
     // This code would remain
     return 'Foo';
 };
@@ -51,7 +64,7 @@ In your webpack config:
 {
     module: {
         loaders: [
-            { test: /\.js$/, loader: "strip-loader?strip[]=debug,strip[]=console.log" }
+            { test: /\.js$/, loader: "strip-loader?strip[]=debug,strip[]=assert" }
         ]
     }
 };
@@ -71,24 +84,6 @@ var webpackConfig = {
     }
 };
 ```
-
-### Replace unused module
-
-So far we've removed the calls to the debug function, but your app still requires the `debug` module in the final bundle. Use the [`NormalModuleReplacementPlugin`](http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin) to replace it with an empty function:
-
-```javascript
-// webpack config
-{
-    plugins: [
-        new webpack.NormalModuleReplacementPlugin(/debug/, process.cwd() + '/emptyDebug.js'),
-    ]
-}
-
-// emptyDebug.js
-module.exports = function() { return new Function(); };
-```
-
-
 
 ## License
 

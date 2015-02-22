@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "cover": "node node_modules/istanbul/lib/cli.js cover --dir artifacts -- ./node_modules/mocha/bin/_mocha tests/unit/ --recursive --reporter spec",
-    "lint": "./node_modules/.bin/jshint lib tests",
+    "lint": "./node_modules/.bin/jshint --exclude-path=.gitignore lib tests",
     "test": "mocha tests/unit --recursive --reporter spec"
   },
   "keywords": [
@@ -26,7 +26,9 @@
     "webpack": "^1.4.15"
   },
   "dependencies": {
-    "loader-utils": "^0.2.6"
+    "fu": "^0.1.0",
+    "loader-utils": "^0.2.6",
+    "recast": "^0.10.0"
   },
   "licenses": [
     {
