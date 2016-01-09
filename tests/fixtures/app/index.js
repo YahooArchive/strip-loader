@@ -1,3 +1,4 @@
+console.log('a console.log on the first line should get stripped');
 /**
  * Copyright 2015, Yahoo! Inc.
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
@@ -10,3 +11,4 @@ var makeFoo = function (bar, baz) {
     // This code would remain
     return new Foo(bar, baz);
 };
+console.log('a console.log on the last line without a semicolon should get stripped')
