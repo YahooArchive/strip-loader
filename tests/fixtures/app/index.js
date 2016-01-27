@@ -6,9 +6,13 @@ console.log( 'a console.log on the first line should get stripped' );
 
 var makeFoo = function ( bar, baz ) {
     // The following 2 lines of code will be stripped with our webpack loader
+    var foo = function ( something ) {
+        return "foo";
+    };
     console.log( 'some debug info' );
     debug( 'better debug info' );
     console.log( 'some' + "debug " + info + '(even closing parenthesis);' );
+    console.log( 'some' + "debug" + foo( info ) + '(even closing parenthesis)' );
     // This code would remain
     return new Foo( bar, baz );
 };
