@@ -1,3 +1,18 @@
+># This Project Is Deprecated
+
+>There have been a lot of long standing issues that haven't been addressed and we haven't had the time to dedicate to this library. If I were to restart this project today, it would probably be a codemod script using Facebook's [jscodeshift](https://github.com/facebook/jscodeshift). The regex based approach in this loader only works for very basic use cases.
+
+>The most common use case is when trying to strip `console.log` from your code. You can actually do this without using this loader at all. You can use uglifyjs's `drop_console` option. Here is what that would look like in a webpack plugin:
+```
+new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        drop_console: true
+    }
+})
+```
+
+
+
 # Strip Loader
 
 [![npm version](https://badge.fury.io/js/strip-loader.svg)](http://badge.fury.io/js/strip-loader)
